@@ -42,7 +42,7 @@
 }
 
 .card {
-    height: 490px;
+    height: 495px;
     width: 600px;
     padding: 30px;
     background-color: #5b1a5f;
@@ -116,6 +116,23 @@
     color: #F5D5E0;
 }
 
+.option.correct {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+}
+
+.option.incorrect {
+    background-color: #f44336;
+    border-color: #f44336;
+    color: white;
+}
+
+/* button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+} */
+
 .hint {
     font-size: 14px;
     opacity: 0.5;
@@ -128,7 +145,7 @@
 .next {
     display: flex;
     position: relative;
-    bottom: 19px;
+    bottom: 40px;
     left: 490px;
     margin-top: 10px;
     font-size: small;
@@ -145,8 +162,8 @@
 .prev{
     display: flex;
     position: relative;
-    bottom: 71px;
-    right: inherit;
+    bottom: 90px;
+    right: 15px;
     margin-top: 10px;
     font-size: small;
     border-radius: 25px;

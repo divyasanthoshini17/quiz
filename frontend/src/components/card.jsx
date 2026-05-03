@@ -1,32 +1,79 @@
-import React from 'react'
+
+import React, { useState, useMemo, useEffect } from 'react';
 import '../index.css'
 
-const card = () => {
+const Card = ({questionData, index, total, onNext, onPrev}) => {
+
+  const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    setSelected(null); // Resets selected answer when question changes
+  }, [questionData]);
+
+  const decodeHTML = (html) => {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
+
+  const options = useMemo(() => {
+    return [
+      ...questionData.incorrectAnswers,
+      questionData.correctAnswer
+    ].sort(() => Math.random() - 0.5);
+  }, [questionData]);
+
+  const handleClick = (opt) => {
+    if (selected) return; //stops user from changing answer
+    setSelected(opt);
+  };
+
+  const isCorrect = (opt) => {
+    if (selected === null) return '';
+    if (opt === questionData.correctAnswer) return 'correct';
+    if (opt === selected) return 'incorrect';
+    return '';
+  };
+
+  const handleNext = () => onNext();
+  const handlePrev = () => onPrev();
+
   return (
     <div>
         <div className='container'>
           
           <div className='card'>
-            <h4 className='status'>4/10</h4>
+            <h4 className='status'>{index + 1}/{total}</h4>
             <div className='question'>
               <div className='timeleft'>00:30</div>
-              <h6 className='category'>Geography</h6>
-              <h2>What is the capital of France?</h2>
-            </div>
-            <div className='options'>
-              <button className='option'>Berlin</button>
-              <button className='option'>Madrid</button>
-              <button className='option'>Paris</button>
-              <button className='option'>Rome</button>
+              <h6 className='category'>{decodeHTML(questionData.category)}</h6>
+              <h2>{decodeHTML(questionData.question.text)}</h2>
             </div>
 
-            <h4 className='hint'>Hint: It's also known as the city of love.</h4>
-            <button className='next'>Next</button>
-            <button className='prev'>Prev</button>
+            <div className='options'>
+              {options.map((opt, i) => (
+                <button
+                  key={i}
+                  className={`option ${isCorrect(opt)}`}
+                  onClick={() => handleClick(opt)}
+                  disabled={selected !== null}
+                >
+                  {decodeHTML(opt)}
+                </button>
+              ))}
+          </div>
+
+            <h4 className='hint'>Hint: hints ekada vasthai.</h4>
+            <button className='next' onClick={handleNext}>
+              Next
+            </button>
+            <button className='prev' onClick={handlePrev}>
+              Prev
+            </button>
           </div>
       </div>
     </div>
   )
 }
 
-export default card
+export default Card
