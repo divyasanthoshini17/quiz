@@ -64,13 +64,15 @@ const Card = ({questionData, index, total, onNext, onPrev}) => {
           </div>
 
             <h4 className='hint'>Hint: hints ekada vasthai.</h4>
-            <button className='next' onClick={handleNext}>
-              Next
-            </button>
-            <button className='prev' onClick={handlePrev}>
-              Prev
-            </button>
+            <div className="button-group">
+              <button className="btn" onClick={handlePrev}>
+                Previous
+              </button>
+              <button className="btn" onClick={handleNext}>
+                Next
+              </button>
           </div>
+        </div>
       </div>
     </div>
   )

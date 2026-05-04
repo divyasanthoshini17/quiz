@@ -34,29 +34,37 @@
 /* card.jsx */
 .container {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     background-color: #836f8f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+    padding: 40px;
+    box-sizing: border-box;
 }
 
 .card {
-    height: 495px;
-    width: 600px;
+    width: 100%;
+    max-width: 900px;
     padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
     background-color: #5b1a5f;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 120px auto;
-    position: relative;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: 0.3s ease;
     overflow: hidden;
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
 .status {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     position: relative;
     top: 0;
     left: 0;
@@ -86,11 +94,12 @@
     font-size: 19px;
     font-weight: bold;
     color: #F5D5E0;
-    /* margin-bottom: 10px; */
+    margin-top: 75px; 
+    margin-bottom: 0;
     padding: 10px;
     justify-content: center;
     text-align: center;
-     flex: 1;
+    flex: 1;
     overflow-y: auto;
     padding-right: 5px;
 }
@@ -104,26 +113,25 @@
 .options {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    margin-top: auto;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 .option {
-    padding: 10px 20px;
+    padding: 12px;
+    border-radius: 20px;
+    font-size: 15px;
     background-color: #F5D5E0;
-    border-color: #7b337e;
-    color: #7b337e;
     border: 2px solid #7b337e;
-    border-radius: 25px;
+    color: #7b337e;
     cursor: pointer;
-    font-size: 16px;
+    transition: 0.2s ease;
 }
 
 .option:hover {
     background-color: #6667ab;
-    border-color: #6667ab;
-    color: #F5D5E0;
+    color: white;
+    transform: scale(1.02);
 }
 
 .option.correct {
@@ -152,36 +160,106 @@
     color: #F5D5E0;
 }
 
-.next {
+.button-group {
     display: flex;
-    position: relative;
-    bottom: 40px;
-    left: 490px;
-    margin-top: 10px;
-    font-size: small;
-    border-radius: 25px;
-    padding: 10px 20px;
-    background-color: #7b337e;
-    color: #F5D5E0;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.next:hover {
+.btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #7b337e;
+    color: #F5D5E0;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
     background-color: #5a246e;
 }
 
-.prev{
-    display: flex;
-    position: relative;
-    bottom: 90px;
-    right: 15px;
-    margin-top: 10px;
-    font-size: small;
-    border-radius: 25px;
-    padding: 10px 20px;
-    background-color: #7b337e;
-    color: #F5D5E0;
+/* sidebar.jsx */
+.sidebar {
+    width: 100%;
+    max-width: 300px;
+    background-color: #F5D5E0;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-.prev:hover {
-    background-color: #5a246e;
+.score-card {
+    background: linear-gradient(135deg, #7b337e, #5a246e);
+    color: #F5D5E0;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: center;
 }
+
+.score-card h2 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.score-card p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.q-item {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #836f8f;
+    color: #F5D5E0;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.q-item:hover {
+    transform: scale(1.05);
+    background-color: #6d5a7a;
+}
+
+.q-item.correct {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.q-item.wrong {
+    background-color: #fee2e2;
+    color: #7f1d1d;
+}
+
+/* layout */
+
+/* .main-content {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #836f8f;
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+
+    padding: 40px 40px 40px 40px; 
+    box-sizing: border-box;
+}
+
+.left {
+    display: flex;
+    justify-content: right;
+}
+
+.right {
+    display: flex;
+    justify-content: right;
+} */

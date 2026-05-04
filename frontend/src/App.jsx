@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Card from './components/card'
 import Navbar from './components/navbar'
+import Sidebar from './components/sidebar'
 import './index.css'
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
     <div>
       <Navbar />
       <Card questionData={questions[index]} index={index} total={questions.length} onNext={handleNext} onPrev={handlePrev} />
+      <Sidebar questions={questions}/>
     </div>
   )
 }
