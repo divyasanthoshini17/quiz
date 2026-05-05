@@ -10,11 +10,11 @@ const Card = ({questionData, index, total, onNext, onPrev}) => {
     setSelected(null); // Resets selected answer when question changes
   }, [questionData]);
 
-  const decodeHTML = (html) => {
-    const txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-  };
+  // const decodeHTML = (html) => {
+  //   const txt = document.createElement("textarea");
+  //   txt.innerHTML = html;
+  //   return txt.value;
+  // };
 
   const options = useMemo(() => {
     return [
@@ -46,8 +46,8 @@ const Card = ({questionData, index, total, onNext, onPrev}) => {
             <h4 className='status'>{index + 1}/{total}</h4>
             <div className='question'>
               <div className='timeleft'>00:30</div>
-              <h6 className='category'>{decodeHTML(questionData.category)}</h6>
-              <h2>{decodeHTML(questionData.question.text)}</h2>
+              <h6 className='category'>{questionData.category}</h6>
+              <h2>{questionData.question.text}</h2>
             </div>
 
             <div className='options'>
@@ -58,7 +58,7 @@ const Card = ({questionData, index, total, onNext, onPrev}) => {
                   onClick={() => handleClick(opt)}
                   disabled={selected !== null}
                 >
-                  {decodeHTML(opt)}
+                  {opt}
                 </button>
               ))}
           </div>
